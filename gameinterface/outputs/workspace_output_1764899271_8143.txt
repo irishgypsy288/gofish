@@ -1,0 +1,50 @@
+void UIManager::update(float deltaTime) {
+    updateAnimations(deltaTime);
+    
+    // Auto-step game if in gameplay state and no animations
+    if (m_state == UIState::GAMEPLAY && m_animations.empty() && m_gameEngine) {
+        if (m_gameEngine->getGameState() == GameState::PLAYING) {
+            if (!m_gameEngine->stepGame()) {
+                // Game ended
+                m_state = UIState::END_GAME;
+            }
+        }
+    }
+}
+
+void UIManager::render() {
+    // Clear window
+--
+void UIManager::updateButtonHover(int x, int y) {
+    bool needsRedraw = false;
+    for (auto& button : m_buttons) {
+        bool wasHovered = button.hovered;
+        button.hovered = isPointInButton(x, y, button);
+        if (wasHovered != button.hovered) {
+            needsRedraw = true;
+        }
+    }
+    if (needsRedraw) {
+        render();
+    }
+}
+
+void UIManager::handleButtonClick(int x, int y) {
+    for (const auto& button : m_buttons) {
+--
+void UIManager::updateAnimations(float deltaTime) {
+    bool needsRedraw = false;
+    
+    for (auto& anim : m_animations) {
+        if (anim.active) {
+            anim.progress += deltaTime * 2.0f; // 0.5 second animation
+            
+            if (anim.progress >= 1.0f) {
+                anim.progress = 1.0f;
+                anim.active = false;
+            }
+            
+            // Ease-in-out interpolation
+            float t = anim.progress;
+            float eased = t < 0.5f ? 2.0f * t * t : -1.0f + (4.0f - 2.0f * t) * t;
+            

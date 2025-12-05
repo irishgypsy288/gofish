@@ -1,0 +1,17 @@
+./Makefile
+./PROJECT_SUMMARY.md
+./QUICK_START.md
+./README.md
+./README_COMPLETE.md
+./README_GUI.md
+./UI_MOCKUPS.txt
+./assets/sounds/README.md
+./gofish-gui
+./gofish.cpp
+./src/AudioManager.cpp
+./src/AudioManager.h
+./src/GameEngine.cpp
+./src/GameEngine.h
+./src/UIManager.cpp
+./src/UIManager.h
+./src/main.cpp

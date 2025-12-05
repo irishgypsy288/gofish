@@ -1,0 +1,50 @@
+#include "UIManager.h"
+#include <cstring>
+#include <cmath>
+#include <iostream>
+#include <algorithm>
+
+// Constants
+const int CARD_WIDTH = 80;
+const int CARD_HEIGHT = 120;
+const int CARD_SPACING = 10;
+const int BUTTON_WIDTH = 200;
+const int BUTTON_HEIGHT = 50;
+
+UIManager::UIManager() 
+    : m_display(nullptr), m_window(0), m_gc(0), m_screen(0),
+      m_width(1024), m_height(768), m_running(false),
+      m_state(UIState::WELCOME), m_gameEngine(nullptr),
+      m_maxLogLines(10), m_mouseX(0), m_mouseY(0) {
+}
+
+UIManager::~UIManager() {
+    cleanup();
+}
+
+bool UIManager::initialize(int width, int height) {
+    m_width = width;
+    m_height = height;
+    
+    // Open connection to X server
+    m_display = XOpenDisplay(nullptr);
+    if (!m_display) {
+        std::cerr << "Cannot open X display" << std::endl;
+        return false;
+    }
+    
+    m_screen = DefaultScreen(m_display);
+    m_blackPixel = BlackPixel(m_display, m_screen);
+    m_whitePixel = WhitePixel(m_display, m_screen);
+    
+    // Allocate colors
+    m_greenPixel = allocateColor(11, 93, 30);  // Dark green for table
+    m_redPixel = allocateColor(220, 20, 60);   // Red for hearts/diamonds
+    m_bluePixel = allocateColor(70, 130, 180); // Blue for card backs
+    
+    // Create window
+    m_window = XCreateSimpleWindow(m_display, RootWindow(m_display, m_screen),
+                                   100, 100, m_width, m_height, 1,
+                                   m_blackPixel, m_greenPixel);
+    
+    // Set window properties

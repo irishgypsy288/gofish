@@ -1,0 +1,95 @@
+void UIManager::update(float deltaTime) {
+    updateAnimations(deltaTime);
+    
+    // Auto-step game if in gameplay state and no animations
+    if (m_state == UIState::GAMEPLAY && m_animations.empty() && m_gameEngine) {
+        if (m_gameEngine->getGameState() == GameState::PLAYING) {
+            if (!m_gameEngine->stepGame()) {
+                // Game ended
+                m_state = UIState::END_GAME;
+            }
+        }
+    }
+}
+
+void UIManager::render() {
+    // Clear window
+    XSetForeground(m_display, m_gc, m_greenPixel);
+    XFillRectangle(m_display, m_window, m_gc, 0, 0, m_width, m_height);
+    
+    switch (m_state) {
+        case UIState::WELCOME:
+            renderWelcomeScreen();
+            break;
+        case UIState::GAMEPLAY:
+            renderGameplayScreen();
+            break;
+        case UIState::END_GAME:
+            renderEndGameScreen();
+            break;
+    }
+    
+--
+void UIManager::updateButtonHover(int x, int y) {
+    bool needsRedraw = false;
+    for (auto& button : m_buttons) {
+        bool wasHovered = button.hovered;
+        button.hovered = isPointInButton(x, y, button);
+        if (wasHovered != button.hovered) {
+            needsRedraw = true;
+        }
+    }
+    if (needsRedraw) {
+        render();
+    }
+}
+
+void UIManager::handleButtonClick(int x, int y) {
+    for (const auto& button : m_buttons) {
+        if (isPointInButton(x, y, button)) {
+            if (button.label == "NEW GAME") {
+                if (m_gameEngine) {
+                    m_gameEngine->startNewGame();
+                    m_state = UIState::GAMEPLAY;
+                    m_gameLog.clear();
+                    render();
+                }
+            } else if (button.label == "EXIT") {
+                m_running = false;
+            }
+        }
+    }
+}
+
+--
+void UIManager::updateAnimations(float deltaTime) {
+    bool needsRedraw = false;
+    
+    for (auto& anim : m_animations) {
+        if (anim.active) {
+            anim.progress += deltaTime * 2.0f; // 0.5 second animation
+            
+            if (anim.progress >= 1.0f) {
+                anim.progress = 1.0f;
+                anim.active = false;
+            }
+            
+            // Ease-in-out interpolation
+            float t = anim.progress;
+            float eased = t < 0.5f ? 2.0f * t * t : -1.0f + (4.0f - 2.0f * t) * t;
+            
+            anim.currentX = anim.startX + (anim.endX - anim.startX) * eased;
+            anim.currentY = anim.startY + (anim.endY - anim.startY) * eased;
+            
+            needsRedraw = true;
+        }
+    }
+    
+    // Remove completed animations
+    m_animations.erase(
+        std::remove_if(m_animations.begin(), m_animations.end(),
+                      [](const CardAnimation& a) { return !a.active; }),
+        m_animations.end()
+    );
+    
+    if (needsRedraw) {

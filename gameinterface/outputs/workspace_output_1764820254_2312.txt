@@ -1,0 +1,16 @@
+[main 0978b3f] Add complete graphical UI with X11, animations, and comprehensive documentation
+ 14 files changed, 2855 insertions(+)
+ create mode 100644 Makefile
+ create mode 100644 PROJECT_SUMMARY.md
+ create mode 100644 QUICK_START.md
+ create mode 100644 README_COMPLETE.md
+ create mode 100644 README_GUI.md
+ create mode 100644 UI_MOCKUPS.txt
+ create mode 100644 assets/sounds/README.md
+ create mode 100644 src/AudioManager.cpp
+ create mode 100644 src/AudioManager.h
+ create mode 100644 src/GameEngine.cpp
+ create mode 100644 src/GameEngine.h
+ create mode 100644 src/UIManager.cpp
+ create mode 100644 src/UIManager.h
+ create mode 100644 src/main.cpp

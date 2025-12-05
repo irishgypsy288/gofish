@@ -1,0 +1,3 @@
+Checking dependencies...
+ERROR: g++ not found
+make: *** [Makefile:127: check-deps] Error 1

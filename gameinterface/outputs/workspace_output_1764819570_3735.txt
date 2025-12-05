@@ -1,0 +1,16 @@
+Compiling src/main.cpp...
+g++ -std=c++11 -Wall -Wextra -O2 -c src/main.cpp -o build/main.o
+Compiling src/GameEngine.cpp...
+g++ -std=c++11 -Wall -Wextra -O2 -c src/GameEngine.cpp -o build/GameEngine.o
+Compiling src/UIManager.cpp...
+g++ -std=c++11 -Wall -Wextra -O2 -c src/UIManager.cpp -o build/UIManager.o
+src/UIManager.cpp: In member function ‘void UIManager::drawText(int, int, const std::string&, bool)’:
+src/UIManager.cpp:366:70: warning: unused parameter ‘large’ [-Wunused-parameter]
+  366 | void UIManager::drawText(int x, int y, const std::string& text, bool large) {
+      |                                                                 ~~~~~^~~~~
+src/UIManager.cpp: In member function ‘void UIManager::updateAnimations(float)’:
+src/UIManager.cpp:466:14: error: ‘remove_if’ is not a member of ‘std’; did you mean ‘remove_cv’?
+  466 |         std::remove_if(m_animations.begin(), m_animations.end(),
+      |              ^~~~~~~~~
+      |              remove_cv
+make: *** [Makefile:58: build/UIManager.o] Error 1

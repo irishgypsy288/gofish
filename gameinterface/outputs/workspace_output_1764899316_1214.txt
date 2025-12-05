@@ -1,0 +1,15 @@
+void UIManager::onGameEvent(const GameEvent& event) {
+    addLogMessage(event.message);
+    
+    // Trigger animations based on event type
+    // (This would be expanded with actual card positions)
+    
+    render();
+}
+
+void UIManager::addLogMessage(const std::string& message) {
+    m_gameLog.push_back(message);
+    if (m_gameLog.size() > 50) {
+        m_gameLog.erase(m_gameLog.begin());
+    }
+}

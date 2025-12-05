@@ -1,0 +1,5 @@
+rm 'build/AudioManager.o'
+rm 'build/GameEngine.o'
+rm 'build/UIManager.o'
+rm 'build/main.o'
+rm 'gofish-gui'

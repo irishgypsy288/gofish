@@ -1,0 +1,6 @@
+total 16
+drwxr-xr-x 3 root root   53 Dec  4 03:33 .
+drwxr-xr-x 4 root root   66 Dec  4 03:33 ..
+drwxr-xr-x 8 root root 4096 Dec  4 03:33 .git
+-rw-r--r-- 1 root root 3019 Dec  4 03:33 README.md
+-rw-r--r-- 1 root root 8056 Dec  4 03:33 gofish.cpp

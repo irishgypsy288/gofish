@@ -1,0 +1,4 @@
+Checking dependencies...
+/bin/sh: 1: pkg-config: not found
+WARNING: X11 development libraries not found (install libx11-dev)
+make: *** [Makefile:128: check-deps] Error 1

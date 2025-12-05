@@ -1,0 +1,287 @@
+================================================================================
+                    GO FISH GAME - UI MOCKUPS
+================================================================================
+
+This file contains ASCII art representations of the three main UI screens.
+
+================================================================================
+                        SCREEN 1: WELCOME SCREEN
+================================================================================
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                          GO FISH GAME                                      │
+│                            AI vs AI                                        │
+│                                                                            │
+│                                                                            │
+│                      ┌──────────────────────┐                             │
+│                      │                      │                             │
+│                      │      NEW GAME        │                             │
+│                      │                      │                             │
+│                      └──────────────────────┘                             │
+│                                                                            │
+│                                                                            │
+│                      ┌──────────────────────┐                             │
+│                      │                      │                             │
+│                      │        EXIT          │                             │
+│                      │                      │                             │
+│                      └──────────────────────┘                             │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+Controls:
+- Click "NEW GAME" or press Enter to start
+- Click "EXIT" or press Escape to quit
+- Hover over buttons to see highlight effect
+
+================================================================================
+                        SCREEN 2: GAMEPLAY SCREEN
+================================================================================
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ AI2 (Opponent)                                          Books: 3           │
+│                                                                            │
+│  ┌────┐ ┌────┐ ┌────┐ ┌────┐ ┌────┐                                      │
+│  │ ?? │ │ ?? │ │ ?? │ │ ?? │ │ ?? │  (5 cards - face down)               │
+│  │ ?? │ │ ?? │ │ ?? │ │ ?? │ │ ?? │                                      │
+│  └────┘ └────┘ └────┘ └────┘ └────┘                                      │
+│                                                                            │
+│                                                                            │
+│  ┌──────────────────────────────────────────────┐                         │
+│  │  Game Log                                    │                         │
+│  │  ──────────────────────────────────────────  │                         │
+│  │  AI1: AI2, have any Aces?                    │                         │
+│  │  AI2: Go Fish!                               │                         │
+│  │  AI1 draws: 5 of Hearts                      │                         │
+│  │  AI2: AI1, have any Kings?                   │                         │
+│  │  AI1: Yes, 2                                 │                         │
+│  │  AI2 forms a book of Kings!                  │                         │
+│  │  AI2: AI1, have any Queens?                  │                         │
+│  │  AI1: Go Fish!                               │                         │
+│  │  AI2 draws: Jack of Spades                   │                         │
+│  │  AI1: AI2, have any 7s?                      │                         │
+│  └──────────────────────────────────────────────┘                         │
+│                                                                            │
+│  Draw Pile: 24 cards                                                      │
+│  ┌────┐                                                                   │
+│  │ ?? │                                                                   │
+│  │ ?? │                                                                   │
+│  └────┘                                                                   │
+│                                                                            │
+│                                                                            │
+│ AI1 (Current Player)                                    Books: 2          │
+│                                                                            │
+│  ┌────┐ ┌────┐ ┌────┐ ┌────┐ ┌────┐ ┌────┐ ┌────┐                       │
+│  │ A  │ │ 3  │ │ 7  │ │ 7  │ │ 9  │ │ Q  │ │ K  │                       │
+│  │ ♠  │ │ ♥  │ │ ♦  │ │ ♣  │ │ ♠  │ │ ♥  │ │ ♦  │  (7 cards - face up)  │
+│  └────┘ └────┘ └────┘ └────┘ └────┘ └────┘ └────┘                       │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+Features:
+- AI2's cards shown face down (opponent)
+- AI1's cards shown face up (current player)
+- Game log shows last 10 actions
+- Draw pile shows remaining cards
+- Books count displayed for each player
+- Cards animate when moving between players
+
+Card Design:
+┌────┐
+│ A  │  ← Rank (top-left)
+│ ♠  │  ← Suit symbol (center)
+│  A │  ← Rank (bottom-right)
+└────┘
+
+Card Back:
+┌────┐
+│ ?? │  ← Blue background
+│ ?? │  ← Pattern
+└────┘
+
+================================================================================
+                        SCREEN 3: END GAME SCREEN
+================================================================================
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                          GAME OVER!                                        │
+│                                                                            │
+│                                                                            │
+│                         Winner: AI1                                        │
+│                          Books: 7                                          │
+│                                                                            │
+│                                                                            │
+│                      ┌──────────────────────┐                             │
+│                      │                      │                             │
+│                      │      NEW GAME        │                             │
+│                      │                      │                             │
+│                      └──────────────────────┘                             │
+│                                                                            │
+│                                                                            │
+│                      ┌──────────────────────┐                             │
+│                      │                      │                             │
+│                      │        EXIT          │                             │
+│                      │                      │                             │
+│                      └──────────────────────┘                             │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+│                                                                            │
+└────────────────────────────────────────────────────────────────────────────┘
+
+Features:
+- Winner announcement
+- Final books count
+- Option to play again
+- Option to exit
+
+Audio:
+- Victory sound plays when this screen appears
+- Celebratory tone (2-3 seconds)
+
+================================================================================
+                        COLOR SCHEME
+================================================================================
+
+Background:     Dark Green (#0B5D1E) - Card table color
+Text:           White (#FFFFFF)
+Buttons:        Dark Green (#326432) with white text
+Button Hover:   Lighter Green (#649664)
+Card Back:      Blue (#4682B4)
+Card Face:      White (#FFFFFF)
+Hearts/Diamonds: Red (#DC143C)
+Clubs/Spades:   Black (#000000)
+
+================================================================================
+                        ANIMATION EXAMPLES
+================================================================================
+
+Card Transfer Animation (500ms):
+
+Frame 1 (0ms):     Frame 2 (250ms):    Frame 3 (500ms):
+AI2 Hand           AI2 Hand            AI2 Hand
+┌────┐            ┌────┐              ┌────┐
+│ ?? │            │ ?? │              │ ?? │
+└────┘            └────┘              └────┘
+                     ↓
+                  ┌────┐
+                  │ 7♦ │  ← Moving
+                  └────┘
+                     ↓
+AI1 Hand           AI1 Hand            AI1 Hand
+┌────┐            ┌────┐              ┌────┐┌────┐
+│ 7♣ │            │ 7♣ │              │ 7♣ ││ 7♦ │
+└────┘            └────┘              └────┘└────┘
+
+================================================================================
+                        WINDOW SPECIFICATIONS
+================================================================================
+
+Default Size:    1024 x 768 pixels
+Minimum Size:    800 x 600 pixels
+Resizable:       Yes
+Frame Rate:      60 FPS
+Card Size:       80 x 120 pixels
+Card Spacing:    10 pixels
+Button Size:     200 x 50 pixels
+
+================================================================================
+                        KEYBOARD SHORTCUTS
+================================================================================
+
+Welcome Screen:
+- Enter/Space:  Start new game
+- Escape:       Exit application
+
+Gameplay Screen:
+- Escape:       Exit application
+- (Game plays automatically)
+
+End Game Screen:
+- Enter/Space:  Start new game
+- Escape:       Exit application
+
+================================================================================
+                        MOUSE INTERACTIONS
+================================================================================
+
+Buttons:
+- Hover:        Button highlights
+- Click:        Button activates
+- Cursor:       Changes to pointer over buttons
+
+Cards:
+- Display only: No interaction (AI vs AI mode)
+- Future:       Could add click to select in human mode
+
+================================================================================
+                        STATE TRANSITIONS
+================================================================================
+
+┌─────────────┐
+│   WELCOME   │
+└──────┬──────┘
+       │ Click "NEW GAME" or press Enter
+       ↓
+┌─────────────┐
+│  GAMEPLAY   │
+└──────┬──────┘
+       │ Game ends (no more valid moves)
+       ↓
+┌─────────────┐
+│  END GAME   │
+└──────┬──────┘
+       │ Click "NEW GAME" or press Enter
+       ↓
+┌─────────────┐
+│  GAMEPLAY   │  ← Loop continues
+└─────────────┘
+
+Exit from any state: Click "EXIT" or press Escape
+
+================================================================================
+                        AUDIO EVENTS
+================================================================================
+
+Event:                  Sound:              Duration:
+─────────────────────────────────────────────────────────
+Game Start              (none)              -
+Card Transfer           card_move.wav       0.3s
+Book Formed             (none)              -
+Game End                victory.wav         2-3s
+Button Click            (none)              -
+
+================================================================================
+                        GAME LOG MESSAGES
+================================================================================
+
+Examples of messages shown in the game log:
+
+"AI1: AI2, have any Aces?"
+"AI2: Yes, 2"
+"AI2 gives 2 Aces to AI1"
+"AI1 forms a book of Aces!"
+"AI1: AI2, have any Kings?"
+"AI2: Go Fish!"
+"AI1 draws: 5 of Hearts"
+"AI1 got the requested rank! Goes again."
+"Game Over! Winner: AI1"
+
+================================================================================
+                        END OF UI MOCKUPS
+================================================================================
+
+For implementation details, see:
+- MASTER_PLAN.md (Section 4: UI/UX Specifications)
+- src/UIManager.cpp (Implementation)
+- README_GUI.md (User documentation)
+
+================================================================================
