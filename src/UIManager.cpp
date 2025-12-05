@@ -15,7 +15,8 @@ UIManager::UIManager()
     : m_display(nullptr), m_window(0), m_gc(0), m_screen(0),
       m_width(1024), m_height(768), m_running(false),
       m_state(UIState::WELCOME), m_gameEngine(nullptr),
-      m_maxLogLines(10), m_mouseX(0), m_mouseY(0) {
+      m_maxLogLines(6), m_mouseX(0), m_mouseY(0),
+      m_turnDelay(2.0f), m_turnTimer(0.0f) {
 }
 
 UIManager::~UIManager() {
@@ -151,9 +152,14 @@ void UIManager::update(float deltaTime) {
     // Auto-step game if in gameplay state and no animations
     if (m_state == UIState::GAMEPLAY && m_animations.empty() && m_gameEngine) {
         if (m_gameEngine->getGameState() == GameState::PLAYING) {
-            if (!m_gameEngine->stepGame()) {
-                // Game ended
-                m_state = UIState::END_GAME;
+            // Add delay between turns for watchable gameplay
+            m_turnTimer += deltaTime;
+            if (m_turnTimer >= m_turnDelay) {
+                m_turnTimer = 0.0f;
+                if (!m_gameEngine->stepGame()) {
+                    // Game ended
+                    m_state = UIState::END_GAME;
+                }
             }
         }
     }
@@ -213,20 +219,20 @@ void UIManager::renderGameplayScreen() {
         drawCardBack(startX + i * (CARD_WIDTH + CARD_SPACING), 60);
     }
     
-    // Draw game log
-    int logY = m_height / 2 - 100;
+    // Draw game log (smaller, more compact)
+    int logY = m_height / 2 - 60;
     drawText(m_width / 2 - 200, logY, "Game Log:", false);
-    XDrawRectangle(m_display, m_window, m_gc, m_width / 2 - 210, logY + 10, 420, 180);
+    XDrawRectangle(m_display, m_window, m_gc, m_width / 2 - 210, logY + 10, 420, 110);
     
     int logStartIdx = std::max(0, (int)m_gameLog.size() - m_maxLogLines);
     for (size_t i = logStartIdx; i < m_gameLog.size(); ++i) {
-        drawText(m_width / 2 - 200, logY + 30 + (i - logStartIdx) * 18, 
+        drawText(m_width / 2 - 200, logY + 25 + (i - logStartIdx) * 16, 
                 m_gameLog[i], false);
     }
     
-    // Draw draw pile
+    // Draw draw pile (moved up slightly)
     int pileX = m_width / 2 - CARD_WIDTH / 2;
-    int pileY = m_height / 2 + 100;
+    int pileY = m_height / 2 + 70;
     drawText(pileX - 50, pileY - 10, "Draw Pile: " + 
              std::to_string(m_gameEngine->getDrawPile().size()), false);
     if (!m_gameEngine->getDrawPile().empty()) {
@@ -444,7 +450,7 @@ void UIManager::updateAnimations(float deltaTime) {
     
     for (auto& anim : m_animations) {
         if (anim.active) {
-            anim.progress += deltaTime * 2.0f; // 0.5 second animation
+            anim.progress += deltaTime * 1.0f; // 1.0 second animation
             
             if (anim.progress >= 1.0f) {
                 anim.progress = 1.0f;
@@ -476,6 +482,12 @@ void UIManager::updateAnimations(float deltaTime) {
 
 void UIManager::onGameEvent(const GameEvent& event) {
     addLogMessage(event.message);
+    
+    // Add visual feedback for book formation
+    if (event.type == EventType::BOOK_FORMED) {
+        std::string bookMsg = "*** BOOK FORMED: " + event.message + " ***";
+        addLogMessage(bookMsg);
+    }
     
     // Trigger animations based on event type
     // (This would be expanded with actual card positions)

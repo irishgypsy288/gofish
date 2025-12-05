@@ -76,6 +76,10 @@ private:
     std::vector<std::string> m_gameLog;
     int m_maxLogLines;
     
+    // Turn delay for watchable gameplay
+    float m_turnDelay;
+    float m_turnTimer;
+    
     // Mouse state
     int m_mouseX;
     int m_mouseY;
