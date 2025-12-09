@@ -1,3 +1,0 @@
-Checking dependencies...
-WARNING: aplay not found (audio will be disabled)
-Dependency check complete

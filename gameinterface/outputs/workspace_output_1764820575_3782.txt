@@ -1,2 +1,0 @@
-origin	https://github.com/irishgypsy288/gofish.git (fetch)
-origin	https://github.com/irishgypsy288/gofish.git (push)

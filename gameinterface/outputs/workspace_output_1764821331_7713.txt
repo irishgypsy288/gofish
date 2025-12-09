@@ -1,8 +1,0 @@
-root        2613  0.0  0.0      0     0 pts/0    Z+   03:50   0:00 [git] <defunct>
-root        2629  0.0  0.0      0     0 pts/0    Z+   03:52   0:00 [git] <defunct>
-root        3203  0.0  0.0      0     0 pts/0    Z+   04:03   0:00 [git] <defunct>
-root        3220  0.0  0.0      0     0 pts/0    Z+   04:05   0:00 [git] <defunct>
-root        3291  0.0  0.0   7352  3616 pts/0    S+   04:06   0:00 git push origin main
-root        3298  0.0  0.0   7352  3612 pts/0    S+   04:06   0:00 /usr/lib/git-core/git remote-https origin https://github.com/irishgypsy288/gofish.git
-root        3299  0.0  0.0 102888 18484 pts/0    S+   04:06   0:00 /usr/lib/git-core/git-remote-https origin https://github.com/irishgypsy288/gofish.git
-root        3346  0.0  0.0   3752  1552 pts/0    S+   04:08   0:00 grep git
